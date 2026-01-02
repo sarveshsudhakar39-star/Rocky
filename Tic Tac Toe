@@ -1,0 +1,304 @@
+import random
+import pygame
+import time
+from pygame.locals import *
+pygame.init()
+screen = pygame.display.set_mode((900,900))
+pygame.display.set_caption("Game")
+color=(255,255,0)
+colo=(0,0,0)
+colorw=(255,255,225)
+clock=pygame.time.Clock()
+colors=(255,0,0)
+do=""
+r=500,500
+def Done(msg,size):
+       fontobj=pygame.font.SysFont("freesans", size)
+       msgobj=fontobj.render(msg,False,colors)
+       screen.blit(msgobj,(500,500))
+       print("hello")
+box1=False
+box2=False
+box3=False
+box4=False
+box5=False
+box6=False
+box7=False
+box8=False
+box9=False
+swit=False
+boxs1=0
+boxs2=0
+boxs3=0
+boxs4=0
+boxs5=0
+boxs6=0
+boxs7=0
+boxs8=0
+boxs9=0
+swit=False
+posse=0
+b1=pygame.draw.rect(screen,colo,(0,0,300,300))
+b2=pygame.draw.rect(screen,colo,(300,0,300,300))
+b3=pygame.draw.rect(screen,colo,(600,0,300,300))
+b4=pygame.draw.rect(screen,colo,(0,300,300,300))
+b6=pygame.draw.rect(screen,colo,(600,300,300,300))
+b5=pygame.draw.rect(screen,colo,(300,300,300,300))
+b7=pygame.draw.rect(screen,colo,(0,600,300,300))
+b8=pygame.draw.rect(screen,colo,(300,600,300,300))
+b9=pygame.draw.rect(screen,colo,(600,600,300,300))
+pygame.draw.line(screen,colorw,(0,300),(900,300),5)
+pygame.draw.line(screen,colorw,(0,600),(900,600),5)
+pygame.draw.line(screen,colorw,(300,0),(300,900),5)
+pygame.draw.line(screen,colorw,(600,0),(600,900),5)
+while True:
+    pygame.display.update()
+
+    for event in pygame.event.get():
+        if event.type==pygame.MOUSEBUTTONDOWN:
+            xa,ya=event.pos
+            if b1.collidepoint(xa,ya):
+                if box1==False:
+                    if swit==False:
+                        pygame.draw.circle(screen,colorw,(150,150),100)
+                        swit=True
+                        boxs1=1
+                        box1=True
+                    elif swit==True:
+                        pygame.draw.rect(screen,colorw,(150,150,150,150))
+                        swit=False
+                        boxs1=2
+                        box1=True
+            if b2.collidepoint(xa,ya):
+                if box2==False:
+                    if swit==False:
+                        pygame.draw.circle(screen,colorw,(450,150),100)
+                        swit=True
+                        boxs2=1
+                        box2=True
+                    elif swit==True:
+                        pygame.draw.rect(screen,colorw,(450,150,150,150))
+                        swit=False
+                        boxs2=2
+                        box2=True
+            if b3.collidepoint(xa,ya):
+                if box3==False:
+                    if swit==False:
+                        pygame.draw.circle(screen,colorw,(750,150),100)
+                        swit=True
+                        boxs3=1
+                        box3=True
+                    elif swit==True:
+                        pygame.draw.rect(screen,colorw,(750,150,150,150))
+                        swit=False
+                        boxs3=2
+                        box3=True
+            if b4.collidepoint(xa,ya):
+                if box4==False:
+                    if swit==False:
+                        pygame.draw.circle(screen,colorw,(150,450),100)
+                        swit=True
+                        boxs4=1
+                        box4=True
+                    elif swit==True:
+                        pygame.draw.rect(screen,colorw,(150,450,150,150))
+                        swit=False
+                        boxs4=2
+                        box4=True
+            if b5.collidepoint(xa,ya):
+                if box5==False:
+                    if swit==False:
+                        pygame.draw.circle(screen,colorw,(450,450),100)
+                        swit=True
+                        boxs5=1
+                        box5=True
+                    elif swit==True:
+                        pygame.draw.rect(screen,colorw,(450,450,150,150))
+                        swit=False
+                        boxs5=2
+                        box5=True
+            if b6.collidepoint(xa,ya):
+                if box6==False:
+                    if swit==False:
+                        pygame.draw.circle(screen,colorw,(750,450),100)
+                        swit=True
+                        boxs6=1
+                        box6=True
+                    elif swit==True:
+                        pygame.draw.rect(screen,colorw,(750,450,150,150))
+                        swit=False
+                        boxs6=2
+                        box6=True
+            if b7.collidepoint(xa,ya):
+                if box7==False:
+                    if swit==False:
+                        pygame.draw.circle(screen,colorw,(150,750),100)
+                        swit=True
+                        boxs7=1
+                        box7=True
+                    elif swit==True:
+                        pygame.draw.rect(screen,colorw,(150,750,150,1050))
+                        swit=False
+                        box7=True
+                        boxs7=2
+            if b8.collidepoint(xa,ya):
+                if box8==False:
+                    if swit==False:
+                        pygame.draw.circle(screen,colorw,(450,750),100)
+                        swit=True
+                        boxs8=1
+                        box8=True
+                    elif swit==True:
+                        pygame.draw.rect(screen,colorw,(450,750,150,150))
+                        swit=False
+                        boxs8=2
+                        box8=True
+            if b9.collidepoint(xa,ya):
+                if box9==False:
+                    if swit==False:
+                        pygame.draw.circle(screen,colorw,(750,750),100)
+                        swit=True
+                        boxs9=1
+                        box9=True
+                    elif swit==True:
+                        pygame.draw.rect(screen,colorw,(750,750,150,150))
+                        swit=False
+                        boxs9=2
+                        box9=True
+            if event.type==QUIT:
+                   pygame.quit()
+                   exit()
+    pygame.display.update()
+    if boxs1==1 and boxs2==1 and boxs3==1:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Circle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+    if boxs4==1 and boxs5==1 and boxs6==1:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Circle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+    if boxs7==1 and boxs8==1 and boxs9==1:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Circle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+        
+    if boxs1==1 and boxs4==1 and boxs7==1:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Circle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+    if boxs2==1 and boxs5==1 and boxs8==1:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Circle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+    if boxs3==1 and boxs6==1 and boxs9==1:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Circle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+        
+    if boxs1==1 and boxs5==1 and boxs9==1:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Circle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+    if boxs7==1 and boxs5==1 and boxs3==1:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Circle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+    if boxs1==2 and boxs2==2 and boxs3==2:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Rectangle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+    if boxs4==2 and boxs5==2 and boxs6==2:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Rectangle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+    if boxs7==2 and boxs8==2 and boxs9==2:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Rectangle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+        
+    if boxs1==2 and boxs4==2 and boxs7==2:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Rectangle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+    if boxs2==2 and boxs5==2 and boxs8==2:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Rectangle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+    if boxs3==2 and boxs6==2 and boxs9==2:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Rectangle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+        
+    if boxs1==2 and boxs5==2 and boxs9==2:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Rectangle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break
+    if boxs7==2 and boxs5==2 and boxs3==2:
+        time.sleep(1)
+        screen.fill((0,0,0))
+        gg="Game over, Rectangle wins"
+        gg=str(gg)
+        Done(gg,30)
+        pygame.display.update()
+        break   
+            
