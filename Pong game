@@ -1,0 +1,131 @@
+import random
+import pygame
+import time
+from pygame.locals import *
+pygame.init()
+screen = pygame.display.set_mode((1800,1000))
+pygame.display.set_caption("Shapes!!")
+y=375
+d=375
+cx=900
+cy=500
+r=500,500
+point1=0
+point2=0
+do=""
+color=(0,255,0)
+colors=(255,255,255)
+up2=False
+up1=False
+down1=False
+down2=False
+ciry=False
+cirx=False
+clock=pygame.time.Clock()
+def show_text(msg, x, y, color, size):
+       fontobj=pygame.font.SysFont("freesans", size)
+       msgobj=fontobj.render(g,False,colors)
+       screen.blit(msgobj,(650,100))
+       print(msg)
+def Done(msg, x, y, color, size):
+       fontobj=pygame.font.SysFont("freesans", size)
+       msgobj=fontobj.render(msg,False,colors)
+       screen.blit(msgobj,(850,100))
+       print("hellllo")
+while True:
+    screen.fill((0,0,0))
+    g="Team 1 points:", point1, "Team 2 points:", point2
+    g=str(g)
+    print(point1,point2)
+##    if point1==3:
+##           do="Team 1 wins!!"
+##    if point2==3:
+##           do="Team 2 wins!!"
+    show_text(g, point2,r,colors,30)
+    ball=pygame.draw.circle(screen,color,(cx,cy),50)
+    pad1=pygame.draw.rect(screen,colors,(65,y,65,200))
+    pad2=pygame.draw.rect(screen,colors,(1665,d,65,200))
+    if ciry==False:
+        cy=cy-30
+    if ciry==True:
+        cy=cy+30
+    if cirx==False:
+        cx=cx-30
+    if cirx==True:
+        cx=cx+30
+    if up1==True and y>=0:
+        y=y-20
+    if down1==True and y<800:
+        y=y+20
+    if up2==True and d>=0:
+        d=d-20
+    if down2==True and d<=800:
+        d=d+20
+    if cy<50:
+        ciry=True
+    if cy>950:
+        ciry=False
+    if ball.colliderect(pad1):
+        cirx=True
+    if ball.colliderect(pad2):
+        cirx=False
+    if cx<0:
+        cx=900
+        cy=500
+        screen.fill((0,0,0))
+        ball=pygame.draw.circle(screen,color,(cx,cy),50)
+        pad1=pygame.draw.rect(screen,colors,(65,y,65,200))
+        pad2=pygame.draw.rect(screen,colors,(1665,d,65,200))
+        point1=point1+1
+        
+        pygame.display.update()
+        time.sleep(2)
+    if cx>1800:
+        cx=900
+        cy=500
+        screen.fill((0,0,0))
+        ball=pygame.draw.circle(screen,color,(cx,cy),50)
+        pad1=pygame.draw.rect(screen,colors,(65,y,65,200))
+        pad2=pygame.draw.rect(screen,colors,(1665,d,65,200))
+        point2=point2+1
+        pygame.display.update()
+        time.sleep(2)
+    for event in pygame.event.get():
+        if event.type==KEYDOWN:
+            if event.key==K_w:
+                up1=True
+            if event.key==K_s:
+                down1=True
+            if event.key==K_UP:
+                up2=True
+            if event.key==K_DOWN:
+                down2=True         
+        if event.type==KEYUP:
+            if event.key==K_w or event.key==K_s:
+                up1=False
+                down1=False
+            if event.key==K_UP or event.key==K_DOWN:
+                up2=False
+                down2=False                    
+        if event.type==QUIT:
+            pygame.quit()
+            exit()
+    if point1==3:
+           do="Team 1 wins!!"
+    if point2==3:
+           do="Team 2 wins!!"
+    if point1==3 or point2==3:
+       screen.fill((0,0,0))
+       pygame.display.update()
+       Done(do,point1,r,colors,30)
+       print("hello")
+       pygame.display.update()
+       break         
+    pygame.display.update()
+    clock.tick(120)
+
+
+
+
+    
+    
